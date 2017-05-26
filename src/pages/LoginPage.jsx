@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import InputGroup from '../components/InputGroup';
+import './LoginPage.css';
 
 export default class LoginPage extends Component {
   constructor(props) {
@@ -23,20 +24,21 @@ export default class LoginPage extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log('submit');
+    console.log(`Submitting: ${JSON.stringify(this.state, null, 2)}`);
   }
 
   render() {
     return (
       <div className="login-page">
         <header className="page-header">
-          <h1 className="logo">
-            Gradebook
-            <span className="logo__byline">by MuchMake</span>
-          </h1>
+          <div className="logo">
+            <h1 className="logo__name">Gradebook</h1>
+            <div className="logo__byline">by <b>MuchMake</b></div>
+          </div>
         </header>
         <main className="main-content">
-          <form onSubmit={this.handlSubmit}>
+          <h2>Login</h2>
+          <form onSubmit={this.handleSubmit}>
             <InputGroup
               name="email"
               type="email"
@@ -49,8 +51,13 @@ export default class LoginPage extends Component {
               value={this.state.password}
               onChange={this.handleInputChange}
             />
-            <button type="submit">Submit</button>
+            <button type="submit">Log In</button>
           </form>
+
+          <ul>
+            <li><a href="#!">Forgot Password?</a></li>
+            <li><a href="#!">Request Invite to Beta</a></li>
+          </ul>
         </main>
       </div>
     );

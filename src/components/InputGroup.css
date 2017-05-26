@@ -1,0 +1,36 @@
+.input-group {
+  position: relative;
+  overflow: hidden;
+}
+
+.input-group input {
+  display: block;
+  font-size: 1rem;
+  font-family: 'Open Sans', sans-serif;
+  width: 100%;
+  padding: 0.33rem 0;
+  margin: 0.5rem 0;
+  border: 0;
+  border-bottom: 1px solid #000;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-bottom-color: var(--color-blue);
+}
+
+.input-group:before {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: 0.35rem;
+  left: 0;
+  height: 0.15rem;
+  width: 100%;
+  background-color: var(--color-blue);
+  transform: translateX(-105%);
+}
+.input-group.is-active:before {
+  transform: translateX(0%);
+  transition: all linear 0.2s;
+}
