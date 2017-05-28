@@ -1,18 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-const HomePage = ({ user }) => {
-  if (!user) return (<Redirect to="/login" />);
-  return (<h1>Hello {user.name}</h1>);
-};
-
-HomePage.defaultProps = {
-  user: null,
+const HomePage = ({ currentUser }) => {
+  if (!currentUser) return (<Redirect to="/login" />);
+  return (<h1>Hello {currentUser.email}</h1>);
 };
 
 HomePage.propTypes = {
-  user: PropTypes.shape({ email: PropTypes.string }),
+  currentUser: PropTypes.shape({ email: PropTypes.string }).isRequired,
 };
 
-export default HomePage;
+function mapStateToProps(state) {
+  return {
+    currentUser: state.currentUser,
+  };
+}
+
+export default connect(mapStateToProps)(HomePage);

@@ -23,14 +23,20 @@
   content: '';
   display: block;
   position: absolute;
-  bottom: 0.35rem;
+  bottom: 0.5rem;
   left: 0;
-  height: 0.15rem;
+  height: 2px;
   width: 100%;
   background-color: var(--color-blue);
   transform: translateX(-105%);
 }
+
 .input-group.is-active:before {
   transform: translateX(0%);
+}
+
+.input-group,
+.input-group:before,
+.input-group:after {
   transition: all linear 0.2s;
 }

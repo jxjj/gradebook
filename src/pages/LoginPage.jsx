@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import { loginUser } from '../actions/userActions';
 import InputGroup from '../components/InputGroup';
 import './LoginPage.css';
 
-export default class LoginPage extends Component {
+class LoginPage extends Component {
   constructor(props) {
     super(props);
 
@@ -24,10 +28,14 @@ export default class LoginPage extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log(`Submitting: ${JSON.stringify(this.state, null, 2)}`);
+    this.props.dispatch(loginUser(this.state));
   }
 
   render() {
+    // if authenticated, send to home
+    if (this.props.currentUser) {
+      return (<Redirect to="/" />);
+    }
     return (
       <div className="login-page">
         <header className="page-header">
@@ -63,3 +71,18 @@ export default class LoginPage extends Component {
     );
   }
 }
+
+LoginPage.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  currentUser: PropTypes.shape({
+    email: PropTypes.string,
+  }).isRequired,
+};
+
+function mapStateToProps(state) {
+  return {
+    currentUser: state.currentUser,
+  };
+}
+
+export default connect(mapStateToProps)(LoginPage);
