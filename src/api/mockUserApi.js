@@ -27,7 +27,7 @@ export function loginWithPassword(email, password) {
   return new Promise((resolve) => {
     setTimeout(() => {
       const user = users.find(u => u.email === email);
-      if (user.password === password) {
+      if (user && (user.password === password)) {
         return resolve(getSafeUser(user));
       }
       return resolve(false);

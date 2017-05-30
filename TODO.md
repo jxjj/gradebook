@@ -1,14 +1,14 @@
 # TO DO
 
 ## Doing
+- Show User Profile in App Bar
 
 ## To Do
 
 ### MVP
-
+- Remember User Login
 - Create Test for Login page, actions, and reducers
 - Logout User
-- Show User Profile in App Bar
 - User can add new grade sheets.
 - User can view grade sheet.
 - User can add a new Student Row on the grade sheet

@@ -20,8 +20,7 @@ class InputGroup extends Component {
     return classes.join(' ');
   }
 
-  handleFocus(event) {
-    console.log(event);
+  handleFocus() {
     this.setState({
       isActive: true,
     });

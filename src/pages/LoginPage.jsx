@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { loginUser } from '../actions/userActions';
 import InputGroup from '../components/InputGroup';
+import Footer from '../components/Footer';
+import LoginErrors from '../components/LoginErrors';
 import './LoginPage.css';
 
 class LoginPage extends Component {
@@ -46,6 +48,7 @@ class LoginPage extends Component {
         </header>
         <main className="main-content">
           <h2>Login</h2>
+          <LoginErrors errors={this.props.loginErrors} />
           <form onSubmit={this.handleSubmit}>
             <InputGroup
               name="email"
@@ -67,6 +70,7 @@ class LoginPage extends Component {
             <li><a href="#!">Request Invite to Beta</a></li>
           </ul>
         </main>
+        <Footer />
       </div>
     );
   }
@@ -74,14 +78,18 @@ class LoginPage extends Component {
 
 LoginPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  currentUser: PropTypes.shape({
-    email: PropTypes.string,
-  }).isRequired,
+  currentUser: PropTypes.shape({ email: PropTypes.string }),
+  loginErrors: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
+
+LoginPage.defaultProps = {
+  currentUser: null,
 };
 
 function mapStateToProps(state) {
   return {
     currentUser: state.currentUser,
+    loginErrors: state.loginErrors,
   };
 }
 

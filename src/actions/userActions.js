@@ -21,7 +21,7 @@ export const loginUser = ({ email, password }) => dispatch => (
       if (user) {
         dispatch(createLoginSuccessAction(user));
       } else {
-        dispatch(createLoginFailureAction('email or password invalid'));
+        dispatch(createLoginFailureAction('Email or password invalid'));
       }
     })
     .catch(err => dispatch(createLoginFailureAction(err.message)))
